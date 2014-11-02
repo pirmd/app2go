@@ -1,0 +1,17 @@
+' -----------------------------------------------------------------------------
+'
+'         NAME: gtk.vbs
+'  DESCRIPTION: GTK+ library
+'
+'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
+'      LICENSE: MIT license without any warranty
+'
+'      VERSION: 1.0.0 r6
+'      CREATED: 2008.08.08 / REVISION: 2014.02.28 - 16:59
+'
+' -----------------------------------------------------------------------------
+
+AddToPATH RootFolder&"\CommonFiles\gtk\bin"
+'SetEnv "GTK2_RC_FILES", MyAppFolder\CommonFiles\gtk\etc\gtk-2.0
+
+' vim: set filetype=vb nospell:

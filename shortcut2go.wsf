@@ -1,0 +1,103 @@
+<!--
+'         NAME: shortcut.wsf
+'  DESCRIPTION: make an exe of a app2go script launcher
+'               Information are read from the app2go script
+'      CREATED: 2012.08.06 / REVISION: 2014.07.30 - 16:07
+-->
+<package>
+
+<job id="shortcut">
+
+    <resource id="ScriptFolder">Config\</resource>
+    <resource id="ShortcutExe">app2go2exe\shortcut2go.exe</resource>
+    <resource id="RcEdit">..\CommonFiles\bin\RCEDIT.exe</resource>
+
+    <runtime>
+        <unnamed name="script" many="false" required="false"
+                 helpstring="Path to the script to execute or script name located in configuration folder" />
+        <named name="all" type="simple" required="false"
+               helpstring="Create shortcut for all script in the configuration folder" />
+        <named name="debug" type="simple" required="false"
+               helpstring="Display debug messages" />
+        <named name="verbose" type="simple" required="false"
+               helpstring="Display verbose messages" />
+    </runtime>
+    <script language="VBScript" src="app2go\Core.vbs" />
+	<script language="VBScript">
+
+       Private Function ScriptFileLocation(Script)
+           ScriptByName = ScriptFolder & "\" & Script&".2go"
+           If FSO.FileExists(Script) Then  ' Script is a path that exists
+                ScriptFileLocation = Script
+           ElseIf FSO.FileExists(ScriptByName) Then ' Script is a name to a script configuration
+                ScriptFileLocation = ScriptByName
+           Else
+                Die Script&" configuration file cannot be found"
+            End If
+        End Function
+
+        Private Sub BuildShortcutApp2go(ScriptFile)
+          ' TODO: something nicer should be possible instead of loading everything
+            LoadSCript ScriptFile
+          ' we just have to copy the universal launcher and costumize it a bit
+            LogDebug "Create shortcut in "&Exe2Go
+            If FSO.FileExists(Exe2go) Then FSO.DeleteFile(Exe2Go)
+            FSO.CopyFile ShortcutExe, Exe2go
+            If Ico <> "" Then
+                LogDebug "Customize shortcut with ico "&Ico
+                WshShell.Run RcEdit&" /I "&Exe2go&" "&Ico, 1, True
+            End If
+            If Exe2goInPath <> "" Then
+                LogDebug "Create shortcut in path "&Exe2GoInPath
+                If FSO.FileExists(Exe2goInPath) Then FSO.DeleteFile(Exe2GoInPath)
+                FSO.CopyFile Exe2go, Exe2goInPath
+            End If
+           'Clean envirnomenet for another script if any
+           ' TODO: something nicer should be possible
+            Ver = ""
+            Flavour = ""
+            AppFolder = ""
+            CfgFolder = ""
+            ExeFolder = ""
+            Exe2go = ""
+            Ico = ""
+            Exe2goInPath = ""
+       End Sub
+
+      '---+ Get General configuration defintion for app2go ---------------------
+        LoadScript LauncherFolder&"\app2go.2go"
+
+      '---+ Build folders locations --------------------------------------------
+        ScriptFolder = FSO.BuildPath(LauncherFolder, getResource("ScriptFolder"))
+        ShortcutExe = FSO.BuildPath(LauncherFolder, getResource("ShortcutExe"))
+        RcEdit = FSO.BuildPath(LauncherFolder, getResource("RcEdit"))
+
+      '---+ Parse command line Arguments ---------------------------------------
+        ShowWarningMsg()
+        For Each arg in WScript.Arguments
+            arg = LCase(arg)
+            If arg="/verbose" Then
+                ShowVerboseMsg()
+            ElseIf arg="/debug" Then
+                ShowDebugMsg()
+            ElseIf arg="/all" Then
+                LogDebug "Create shorcut for all scripts in "&ScriptFolder
+                For Each script in FSO.GetFolder(ScriptFolder).Files
+                    If UCase(FSO.GetExtensionName(script.name)) = "2GO" Then
+                        LogVerbose "Create shortcut for script "&script.Name
+                        BuildShortCutApp2go SCriptFileLocation(FSO.GetBaseName(script.Name))
+                    Else
+                        logDebug("Ignore non app2go configuration file "&script.Name)
+                    End If
+                Next
+                WScript.Quit(Err.Number)
+            Else
+                LogVerbose "Create shortcut for script "&arg
+                BuildShortCutApp2go ScriptFileLocation(arg)
+                WScript.Quit(Err.Number)
+            End If
+        Next
+	</script>
+</job>
+
+</package>

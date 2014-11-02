@@ -1,0 +1,23 @@
+' -----------------------------------------------------------------------------
+'         NAME: syncme.2go
+'  DESCRIPTION: automatically syncronize with host provided that a unison
+'               profile is defined with the host name.
+'
+'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
+'      LICENSE: MIT license without any warranty
+'
+'      CREATED: 2008.08.08 / REVISION: 2014.04.30 - 13:32
+' -----------------------------------------------------------------------------
+
+'---+ Who  and Where am I? -----------------------------------------------------
+If FSO.FileExists(RootFolder&"\Unison2go\config\"&HostName&".prf") Then
+    CLArgs = "-batch -auto -retry=3 -maxerrors=5 "&Hostname
+    LoadScript "unison.2go"
+Else
+    LoadScript "unison-gtk.2go"
+End If
+
+'---+ Personalyse shortcut name -----------------------------------------------
+Exe2go = Appfolder&"\SyncMe.exe"
+
+' vim: set filetype=vb nospell:

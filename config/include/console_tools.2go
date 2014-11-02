@@ -1,0 +1,22 @@
+' -----------------------------------------------------------------------------
+'         NAME: console_tools.2go
+'  DESCRIPTION: access console tools
+'
+'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
+'      LICENSE: MIT license without any warranty
+'
+'      CREATED: 2014.03.04 / REVISION: 2014.08.06 - 17:22
+' -----------------------------------------------------------------------------
+
+LoadScriptIfExists "cygwin.2go"
+LoadScriptIfExists "python.2go"
+LoadScriptIfExists "golang.2go"
+
+AddToPATH LibFolder&"\Exe2go"
+AddToPATH LibFolder&"\bin"
+AddToPATH LibFolder&"\Scripts"
+AddToPATH RootFolder&"\gtypist"
+AddToPATH RootFolder&"\pandoc"
+AddToPATH RootFolder&"\tinyCCompiler"
+
+' vim: set filetype=vb nospell:

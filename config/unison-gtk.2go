@@ -1,0 +1,15 @@
+' -----------------------------------------------------------------------------
+'         NAME: unison-gtk.cfg
+'  DESCRIPTION: start unison in a portable way
+'
+'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
+'      LICENSE: MIT license without any warranty
+'
+'      CREATED: 2008.08.08 / REVISION: 2014.04.25 - 09:46
+' -----------------------------------------------------------------------------
+
+Flavour= "-gtk"
+LoadScript "include\GTK.2go"
+LoadScript "unison.2go"
+
+' vim: set filetype=vb nospell:

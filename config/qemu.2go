@@ -1,0 +1,37 @@
+' -----------------------------------------------------------------------------
+'         NAME: qemu.2go
+'  DESCRIPTION: virtualize something
+'
+'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
+'      LICENSE: MIT license without any warranty
+'
+'      CREATED: 2014.04.16 / REVISION: 2014.04.25 - 09:20
+' -----------------------------------------------------------------------------
+
+'---+ Who and Where am I? ------------------------------------------------------
+App = "qemu"
+
+qemu_opt = "-localtime -k fr -usb -usbdevice tablet -soundhw ac97"
+qemu_opt = qemu_opt & " -net nic -net user"
+qemu_opt = qemu_opt & " -m " & cstr(GetFreeMemInMb() \ 3 + 256) 'At least 256Mo
+
+' Accept already existing arguments (for example see VirtualizeMe.2go)
+CLArgs = AddCmdLine(qemu_opt, CLArgs)
+
+LoadScript "include\app2goFSH.2go"
+Exe = ExeFolder&"\qemu-system-x86_64.exe"
+
+'---+ Run Main App ------------------------------------------------------------
+Run Exe, CLArgs, RUN_NORMAL, WAIT_FOR_ME
+
+'---+ Support functions -------------------------------------------------------
+Private Function GetFreeMemInMb()
+    WMIQuery = "SELECT * FROM Win32_PerfFormattedData_PerfOS_Memory"
+    Set perfStat = WMIService.ExecQuery(WMIQuery,,48)
+    For Each perf in perfStat
+        GetFreeMemInMb = cint( perf.AvailableMBytes )
+    Next
+End Function
+
+
+' vim: set filetype=vb nospell:

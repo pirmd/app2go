@@ -1,0 +1,27 @@
+' -----------------------------------------------------------------------------
+'         NAME: app2go.2go
+'  DESCRIPTION: general configuration file for all app2go apps
+'
+'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
+'      LICENSE: MIT license without any warranty
+'
+'      CREATED: 2008.08.08 / REVISION: 2014.04.28 - 11:12
+' -----------------------------------------------------------------------------
+
+'---+ Build File System Hierarchy or sort of ---------------------------
+RootFolder = LauncherParentFolder
+DocFolder  = GetDriveByVolumeName("PIR20100110")&"\Documents"
+LibFolder  = RootFolder&"\CommonFiles"
+
+'---+ Make some nice prog widely available -----------------------------
+AddToPATH LibFolder&"\DLL"
+
+'---+ Environement variables -------------------------------------------
+SetEnv "HOME", DocFolder
+SetEnv "LANG", "fr_FR.UTF-8"
+SetEnv "LC_ALL", "fr_FR.UTF-8"
+
+'---+ Fix Letter for the USB drive -------------------------------------
+Link GetDriveByVolumeName("PIR20100110"), "B:"
+
+' vim: set filetype=vb nospell:

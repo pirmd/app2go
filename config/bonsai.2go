@@ -1,0 +1,45 @@
+' -----------------------------------------------------------------------------
+'         NAME: bonsai.vbs
+'  DESCRIPTION: Set Up my portable environement to feel at home almost evrywhere
+'
+'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
+'      LICENSE: MIT license without any warranty
+'
+'      CREATED: 2008.08.08 / REVISION: 2014.04.30 - 13:49
+' -----------------------------------------------------------------------------
+
+'---+ Who am I? ---------------------------------------------------------------
+App = "Bonsai"
+AppFolder = RootFolder&"\"&App
+Ico = AppFolder&"\"&App&".ico"
+Exe2go = AppFolder&"\"&App&".exe"
+
+'---+ Install sendto and context menu shortcuts -----------------------
+'AddToSendTo RootFolder&"\Gvim2Go\gvim2go.exe","", "Edit with gVim"
+'AddToSendTo RootFolder&"\PeazipPortable\PeazipPortable.exe", "-ext2browse", "Open with Peazip"
+'AddToSendTo RootFolder&"\PeazipPortable\PeazipPortable.exe", "-ext2folder", "Extract Here (in new folder)"
+'AddToSendTo ARCHIVER, "-add2zip", "Add to Zip"
+'AddToSendTo ARCHIVER, "-add2wipe", "Secure Delete"
+'SetRegKey HKCU_CLASSES&"*\shell\gVim\command", EDITOR & " '%1'"
+'SetRegKey HKCU_CLASSES&"Unknown\shell\gVim\command", EDITOR & " '%1'"
+
+
+'---+ Do some useful stuff ----------------------------------------------------
+
+'++ Can't do anything valuable without my morning coffe !
+'Run MainAppFolder&"\cafe\cafe.exe", "", RUN_NORMAL, DONT_WAIT_FOR_ME
+
+'++ More Desktops ... more fun
+'Run MainAppFolder&"\bosskey\bosskey.exe", "/go", RUN_NORMAL, DONT_WAIT_FOR_ME
+
+'++ Host specific tasks (if any)
+'LoadScriptIfExists ïnclude\"&HostName&".2go"
+
+'++ Now lets display a nice menu, and wait for it to exit before we continue
+Run AppFolder&"\psmenu\psmenu.exe", "", RUN_NORMAL, WAIT_FOR_ME
+
+'---+ Time to say Goodbye -----------------------------------------------------
+RunOnExit AppFolder&"\EjectUSB\EjectUSB.exe", "", RUN_NORMAL, WAIT_FOR_ME
+
+
+' vim: set filetype=vb nospell:
