@@ -1,0 +1,21 @@
+<!--
+'  DESCRIPTION: app2go script launcher
+'      CREATED: 2008.08.08 / REVISION: 2016.02.18 - 13:31
+-->
+<package>
+
+<job id="launch">
+    <script language="VBScript" src="../lib2go.vbi"/>
+    <script language="VBScript" src="./app2go.2go"/>
+
+    <script language="VBScript">
+      SetEnv "VIMRUNTIME", AppFolder&"\gvim"
+      SetEnv "VIM", CfgFolder
+      AppArgs = MergeCmdLine(Array("-i "), CfgFolder&"\_viminfo", LauncherArgs)
+      FixUserFolders CfgFolder&"\_viminfo"
+      Run AppFolder&"\gvim\gvim.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
+      StartLauncher
+    </script>
+</job>
+
+</package>

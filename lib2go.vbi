@@ -1,6 +1,6 @@
 ' -----------------------------------------------------------------------------
 '  DESCRIPTION: library to build portable environement for windows application
-'      CREATED: 2008.08.08 / REVISION: 2016.05.12 - 16:32
+'      CREATED: 2008.08.08 / REVISION: 2016.02.18 - 13:00
 ' -----------------------------------------------------------------------------
 
 On Error Goto 0
@@ -96,20 +96,15 @@ Public Function GetResourceParam(resID)
 End Function
 ' End Set/getResourceParam -----------------------------------------------------
 
+
 ' ------------------------------------------------------------------------------
 '         NAME: StartLauncher
 '  DESCRIPTION: Start launcher
-'      PARAM 1: Path to the script to start
-'      PARAM 2: Additional arguments pass to the scripts
 ' ------------------------------------------------------------------------------
-Public Sub StartLauncher(app2goScript, ScriptArguments)
-    LogVerbose "Start "&app2goScript&" with arguments: "&ScriptArguments
-    CommandLineArguments = ScriptArguments
-    LoadScript app2goScript
+Public Sub StartLauncher()
     MyLauncher.StartLauncher()
+    WScript.Quit(Err.Number)
 End Sub 'StartLauncher ---------------------------------------------------------
-
-
 
 
 ' -----------------------------------------------------------------------------

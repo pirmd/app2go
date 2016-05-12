@@ -1,27 +1,33 @@
 ' -----------------------------------------------------------------------------
-'         NAME: app2go.2go
 '  DESCRIPTION: general configuration file for all app2go apps
-'
-'       AUTHOR: Pierre Duranton <email:pmd-prj@laposte.net>
-'      LICENSE: MIT license without any warranty
-'
-'      CREATED: 2008.08.08 / REVISION: 2014.04.28 - 11:12
+'      CREATED: 2008.08.08 / REVISION: 2016.02.22 - 10:16
 ' -----------------------------------------------------------------------------
 
-'---+ Build File System Hierarchy or sort of ---------------------------
-RootFolder = LauncherParentFolder
-DocFolder  = GetDriveByVolumeName("PIR20100110")&"\Documents"
-LibFolder  = RootFolder&"\CommonFiles"
+ShowWarningMsg
 
-'---+ Make some nice prog widely available -----------------------------
-AddToPATH LibFolder&"\DLL"
+'---+ File System Hierarchy or sort of --------------------------------
+AppFolder = GetDriveByVolumeName("PIR20100110")&"\Outils"
+AppFolder = LauncherFolder
+DocFolder = GetDriveByVolumeName("PIR20100110")&"\Documents"
+CfgFolder = AppFolder&"\cfg"
 
-'---+ Environement variables -------------------------------------------
+'---+ General portable environement tweak -----------------------------
+AddToPATH AppFolder&"\bin"
+AddToPATH AppFolder&"\cygwin\bin"
+
 SetEnv "HOME", DocFolder
+SetEnv "XDG_HOME_CONFIG", CfgFolder
 SetEnv "LANG", "fr_FR.UTF-8"
-SetEnv "LC_ALL", "fr_FR.UTF-8"
 
-'---+ Fix Letter for the USB drive -------------------------------------
-Link GetDriveByVolumeName("PIR20100110"), "B:"
+SetEnv "GOROOT", AppFolder&"\Golang"
+SetEnv "GOPATH", DocFolder&"\devel\go"
+AddToPATH AppFolder&"\Golang\bin"
+
+SetEnv "PYTHONPATH", AppFolder&"\Python\Lib;"&AppFolder&"\Python\DLLs"
+SetEnv "PYTHONUSERBASE", AppFolder&"\bin"
+SetEnv "PIP_INSTALL_OPTION", "--user"
+SetEnv "PYTHONIOENCODING", ":replace"
+AddToPATH AppFolder&"\Python\Tools\Scripts"
+AddToPATH AppFolder&"\Python"
 
 ' vim: set filetype=vb nospell:

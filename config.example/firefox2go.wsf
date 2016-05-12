@@ -1,0 +1,33 @@
+<!--
+'      CREATED: 2008.08.08 / REVISION: 2016.02.22 - 10:06
+-->
+<package>
+
+<job id="launch">
+    <script language="VBScript" src="../lib2go.vbi"/>
+    <script language="VBScript" src="./app2go.2go"/>
+
+    <script language="VBScript">
+        CfgFolder = CfgFolder&"\firefox"
+        AppArgs = MergeCmdLine(Array("-profile "), CfgFolder, LauncherArgs)
+        FixUserFolders CfgFolder&"\prefs.js"
+        FixUserFolders CfgFolder&"\mimeTypes.rdf"
+        FixUserFolders CfgFolder&"\extensions.ini"
+        FixUserFolders CfgFolder&"\pluginreg.dat"
+
+        SetEnv "MOZ_CRASHREPORTER_DISABLE", 1
+        SetEnv "MOZ_PLUGIN_PATH", CfgFolder&"\Plugins"
+
+        If FSO.FileExists(CfgFolder&"\compreg.dat") Then FSO.DeleteFile(CfgFolder&"\compreg.dat")
+        'TODO:
+        ' Registry Entry
+        '   http://mike.kaply.com/2007/04/23/firefox-and-the-windows-registry/
+        ' SetEnv "MOZ_PLUGIN_PATH", MozillaPlugins&";"&JavaPlugins&";"JavaPlugins2
+        ' sqlite3.exe "CfgFolder\extensions.sqlite" "UPDATE addon SET descriptor = '$1' || SUBSTR(descriptor,(LENGTH('$0')+1)) WHERE descriptor LIKE '$0%';"
+
+      Run AppFolder&"\firefox\firefox.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
+      StartLauncher
+    </script>
+</job>
+
+</package>

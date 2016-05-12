@@ -1,0 +1,20 @@
+<!--
+'      CREATED: 2008.08.08 / REVISION: 2016.02.20 - 10:04
+-->
+<package>
+
+<job id="launch">
+    <script language="VBScript" src="../libapp2go.vbi"/>
+    <script language="VBScript" src="./app2go.2go"/>
+
+    <script language="VBScript">
+      AppArgs = "-localtime -k fr -usb -usbdevice tablet -soundhw ac97"
+      AppArgs = AppArgs & " -net nic -net user"
+      AppArgs = AppArgs & "-usbdevice disk:" & GetPhysicalDrive(LauncherDrive)
+      AppArgs = AddCmdLine(AppArgs, LauncherArgs)
+      Run AppFolder&"\qemu\qemu-system-x86_64.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
+      StartLauncher
+    </script>
+</job>
+
+</package>
