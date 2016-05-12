@@ -1,7 +1,7 @@
 <!--
 '         NAME: app2go.wsf
 '  DESCRIPTION: app2go script launcher
-'      CREATED: 2008.08.08 / REVISION: 2016.05.12 - 16:23
+'      CREATED: 2008.08.08 / REVISION: 2016.05.12 - 16:32
 -->
 <package>
 
@@ -22,7 +22,7 @@
                helpstring="Display verbose messages" />
      </runtime>
 
-    <script language="VBScript" src="app2go\core.vbs"/>
+    <script language="VBScript" src="./lib2go.vbi"/>
     <script language="VBScript">
 
        Private Function ScriptFileLocation(Script)
