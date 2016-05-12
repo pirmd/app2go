@@ -68,12 +68,12 @@ The tool is organised in three parts:
   icons and whatever very important metadata you want people to know off (like
   a fancy war-name, a copyright, a trademark, a highly complex and meaningful
   version coding scheme). At the time being it is achieved throug a dead-simple
-  full of bug C-based code that look for a configuration script with the same
+  full of bugis C-based code that looks for a configuration script with the same
   base name in a predertermined set of folder relatove to the shortcut.
 
 
 # EXAMPLES
-Example of use of this framework is availbale in the package 'config' folder
+Example of use of this framework is availbale in the package 'config.example' folder
 with:
 - portable versions of gVim, cygvim, firefox, unison, qemu
 - all of these programmes have access to common resources (useful tools
@@ -90,20 +90,9 @@ with:
     * don't force to run a tray menu to access common features
     * debug my apps with a verbose logging to the console
 
-# USAGE
-    cscript.exe App2GoPlatform\app2go.wsf [/DEBUG|/VERBOSE|/CLEAN] app_name arg1 ... arg2
-
-If you prefer you can create a shortcut once for all with a nice icon by
-running:
-    cscript.exe App2GoPlatform\shortcut2go.wsf [/DEBUG|/VERBOSE] app_name|/ALL.
-For this to work:
-- specify Exe2Go and Ico in tour configuration file
-- you should have RCEDIT.EXE (from win4j)
-
 # API
 Available functions from the framework are:
 * _Methods_:
-   - ./app2go/commandline.vbs:
         AddCmdLine
             : concatanate two parts of a command line
 
@@ -116,7 +105,6 @@ Available functions from the framework are:
             : Add additional " to take care of arguments with space that can
             confuse WShell.Run
 
-    - ./app2go/envandvar.vbs:
         SetEnv
             : define an environemnt variable
 
@@ -126,7 +114,6 @@ Available functions from the framework are:
         DefaultTo
             : set a default value for a variable
 
-    - ./app2go/link.vbs:
         Link
             : create a junction, shortcut or a subst
 
@@ -139,21 +126,18 @@ Available functions from the framework are:
         AddToSendTo
             : create a link in the 'Send To' right-click menu
 
-    - ./app2go/LoadScript.vbs
         LoadScript
             : load an app2go script from a file
 
         LoadScriptIfExists:
             : load an app2go script from a file if it exists
 
-    - ./app2go/registry.vbs
         MergeHiveFile
             : merge a hive reg file
 
         SetRegKey
             : modify a registry key
 
-    - ./app2go/removabledrive.vbs
         GetDriveByVolumeName
             : Get the drive name (H:, P:,...) of a disk given its volum name
 
@@ -161,7 +145,6 @@ Available functions from the framework are:
             : Get the physical drive Id of a disk given its volume name
 
 
-    - ./app2go/replaceinfile.vbs
         FixDriveLetter
             : Replace %LauncherDrive% with the drive letter from which the prog
             is launched
@@ -179,7 +162,6 @@ Available functions from the framework are:
         ReplaceInFile
             : replace a string in a text file
 
-    - ./app2go/run.vbs
         Run
             : execute a commande (WshShell.Run wrapper) programs launhed are
             automatically killed when the launcher is stopped.
@@ -187,12 +169,10 @@ Available functions from the framework are:
         RunOnExit
             : execute a commande only when the launcher exit
 
-    - ./app2go/runservice.vbs
-        - RunService
+        RunService
             : execute a command as a shared 'service' for all lauchers
 
 * _Constants/variables_:
-   - ./app2go/usefulenv.vbs:
     LauncherDrive
         : drive name of the launcher
 
@@ -222,13 +202,9 @@ Available functions from the framework are:
 
 
 # EXTENDING
-Details will be documented later but basic idea:
-- write some vbs module following one of the example in app2go folder
-- register it in app2go/Core.vbs
+Details will be documented later but basic idea is to write some vbs functions following one of the existing one in lib2go.vbi
 
-See modules in 'app2go' folder which should be straight forward
+See modules in 'libgo' folder which should be straight forward
 
 # TODO
-- Subst  cleaning is not working, script seems to timeout before 'un-subst' is
-  done
 - Improve a lot the documentation
