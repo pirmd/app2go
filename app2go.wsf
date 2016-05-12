@@ -1,13 +1,13 @@
 <!--
 '         NAME: app2go.wsf
 '  DESCRIPTION: app2go script launcher
-'      CREATED: 2008.08.08 / REVISION: 2014.07.30 - 16:07
+'      CREATED: 2008.08.08 / REVISION: 2016.05.12 - 16:23
 -->
 <package>
 
 <job id="launch">
 
-    <resource id="ScriptFolder">Config\</resource>
+    <resource id="ScriptFolder">config.example\</resource>
 
     <runtime>
         <unnamed name="script" many="false" required="true"
@@ -36,11 +36,12 @@
             End If
         End Function
 
-      '---+ Get General configuration defintion for app2go ---------------------
-        LoadScript LauncherFolder&"\app2go.2go"
 
       '---+ Build folders locations --------------------------------------------
         ScriptFolder = FSO.BuildPath(LauncherFolder, getResource("ScriptFolder"))
+
+      '---+ Get General configuration defintion for app2go ---------------------
+        LoadScript ScriptFolder&"\app2go.2go"
 
       '---+ Parse command line Arguments ---------------------------------------
         ShowWarningMsg()
