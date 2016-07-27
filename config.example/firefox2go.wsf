@@ -4,11 +4,11 @@
 <package>
 
 <job id="launch">
-    <script language="VBScript" src="../lib2go.vbi"/>
+    <script language="VBScript" src="./lib2go.vbi"/>
     <script language="VBScript" src="./app2go.2go"/>
 
     <script language="VBScript">
-        CfgFolder = CfgFolder&"\firefox"
+        CfgFolder = HomeFolder&"\.mozilla\firefox\app2go"
         AppArgs = MergeCmdLine(Array("-profile "), CfgFolder, LauncherArgs)
         FixUserFolders CfgFolder&"\prefs.js"
         FixUserFolders CfgFolder&"\mimeTypes.rdf"

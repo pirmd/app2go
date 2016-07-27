@@ -75,11 +75,14 @@ The tool is organised in three parts:
 # EXAMPLES
 Example of use of this framework is availbale in the package 'config.example' folder
 with:
-- portable versions of gVim, cygvim, firefox, unison, qemu
+- portable versions of cygvim (setup, shell, vim), firefox, qemu
 - all of these programmes have access to common resources (useful tools
   available by cygwin, python, installed python packages)
-- file structure is completly tweakable using the configuration files so that
-  you can organize your stuff as you like
+- file structure is completly tweakable using the configuration files app2go.2go so that
+  you can organize your stuff as you like.
+  The example struture is:
+    * simply drop firefox / cygwin runtime folder in the same directory than the configuration files
+    * configuration files are looked in the $HOME folder (like on Linux)
 - fun but maybe not useful things I can do:
     * Identify the USB key by its name and not only by extracting the drive
       name containing the portable apps. It is useful for example if you have
@@ -87,8 +90,7 @@ with:
     * run Mozilla addon-sdk with firefox portable (access to python, tweak
       PATH, portable version of Firefox which allow to path a user defined
       profile name)
-    * don't force to run a tray menu to access common features
-    * debug my apps with a verbose logging to the console
+    * debug my apps2go with a verbose logging to the console
 
 # API
 Available functions from the framework are:

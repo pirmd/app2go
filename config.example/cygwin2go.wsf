@@ -4,17 +4,19 @@
 <package>
 
 <job id="launch">
-    <script language="VBScript" src="../lib2go.vbi"/>
+    <script language="VBScript" src="./lib2go.vbi"/>
     <script language="VBScript" src="./app2go.2go"/>
 
     <script language="VBScript">
-      AppArgs = "--root "&Appfolder&"\cygwin --local-package-dir "&Appfolder&"\cygwin\setup"
+      SetupFolder = CfgFolder&"\cygwin\setup"
+      AppArgs = "--root "&Appfolder&"\cygwin --local-package-dir "&SetupFolder
       AppArgs = AppArgs & " --no-admin --local-install"
-      AppArgs = AppArgs & " --no-desktop --no-shortcut --no-startmenu --no-replaceonreboot"
+      AppArgs = AppArgs & " --delete-orphans --upgrade-also"
+      AppArgs = AppArgs & " --no-shortcuts --no-replaceonreboot"
       AppArgs = AddCmdLine(AppArgs, LauncherArgs)
 
-      RunOnExit "regedit","/S "&AppFolder&"\cygwin\cygwin-clean.reg", RUN_NORMAL, WAIT_FOR_ME
-      Run AppFolder&"\cygwin\setup\setup-x86.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
+      RunOnExit "regedit","/S "&CfgFolder&"\cygwin\cygwin-clean.reg", RUN_NORMAL, WAIT_FOR_ME
+      Run SetupFolder&"\setup-x86.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
       StartLauncher
     </script>
 </job>

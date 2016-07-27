@@ -4,7 +4,7 @@
 <package>
 
 <job id="launch">
-    <script language="VBScript" src="../libapp2go.vbi"/>
+    <script language="VBScript" src="./lib2go.vbi"/>
     <script language="VBScript" src="./app2go.2go"/>
 
     <script language="VBScript">

@@ -1,26 +1,23 @@
 ' -----------------------------------------------------------------------------
 '  DESCRIPTION: general configuration file for all app2go apps
-'      CREATED: 2008.08.08 / REVISION: 2016.02.22 - 10:16
+'      CREATED: 2008.08.08 / REVISION: 2016.02.23 - 17:06
 ' -----------------------------------------------------------------------------
 
 ShowWarningMsg
 
 '---+ File System Hierarchy or sort of --------------------------------
 AppFolder = GetDriveByVolumeName("PIR20100110")&"\Outils"
-AppFolder = LauncherFolder
-DocFolder = GetDriveByVolumeName("PIR20100110")&"\Documents"
-CfgFolder = AppFolder&"\cfg"
+HomeFolder = GetDriveByVolumeName("PIR20100110")&"\Documents"
+CfgFolder = HomeFolder&"\.config"
 
 '---+ General portable environement tweak -----------------------------
-AddToPATH AppFolder&"\bin"
 AddToPATH AppFolder&"\cygwin\bin"
 
-SetEnv "HOME", DocFolder
-SetEnv "XDG_HOME_CONFIG", CfgFolder
+SetEnv "HOME", HomeFolder
 SetEnv "LANG", "fr_FR.UTF-8"
 
 SetEnv "GOROOT", AppFolder&"\Golang"
-SetEnv "GOPATH", DocFolder&"\devel\go"
+SetEnv "GOPATH", HomeFolder&"\devel\go"
 AddToPATH AppFolder&"\Golang\bin"
 
 SetEnv "PYTHONPATH", AppFolder&"\Python\Lib;"&AppFolder&"\Python\DLLs"
