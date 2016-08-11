@@ -8,15 +8,15 @@
     <script language="VBScript" src="./app2go.2go"/>
 
     <script language="VBScript">
-      SetupFolder = CfgFolder&"\cygwin\setup"
+      SetupFolder = HomeFolder&"\devel\dotfiles_private\cygwin\setup"
       AppArgs = "--root "&Appfolder&"\cygwin --local-package-dir "&SetupFolder
       AppArgs = AppArgs & " --no-admin --local-install"
       AppArgs = AppArgs & " --delete-orphans --upgrade-also"
       AppArgs = AppArgs & " --no-shortcuts --no-replaceonreboot"
       AppArgs = AddCmdLine(AppArgs, LauncherArgs)
 
-      RunOnExit "regedit","/S "&CfgFolder&"\cygwin\cygwin-clean.reg", RUN_NORMAL, WAIT_FOR_ME
-      Run SetupFolder&"\setup-x86.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
+      RunOnExit "regedit","/S "&HomeFolder&"\.cygwin\cygwin-clean.reg", RUN_NORMAL, WAIT_FOR_ME
+      Run SetupFolder&"\setup-x86_64.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
       StartLauncher
     </script>
 </job>

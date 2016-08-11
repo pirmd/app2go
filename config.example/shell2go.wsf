@@ -11,7 +11,7 @@
       AppArgs = AppArgs&" -e /bin/mksh -l -i"
       AppArgs = AddCmdLine(AppArgs, LauncherArgs)
 
-      RunOnExit "regedit","/S "&AppFolder&"\cygwin\cygwin-clean.reg", RUN_NORMAL, WAIT_FOR_ME
+      RunOnExit "regedit","/S "&HomeFolder&"\.cygwin\cygwin-clean.reg", RUN_NORMAL, WAIT_FOR_ME
       Run "mintty.exe", AppArgs, RUN_NORMAL, WAIT_FOR_ME
       StartLauncher
     </script>
