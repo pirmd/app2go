@@ -1,5 +1,5 @@
 <!--
-'      CREATED: 2008.08.08 / REVISION: 2016.02.22 - 10:06
+'      CREATED: 2008.08.08 / REVISION: 2018.01.05 - 13:40
 -->
 <package>
 
@@ -12,7 +12,7 @@
         AppArgs = MergeCmdLine(Array("-profile "), CfgFolder, LauncherArgs)
         FixUserFolders CfgFolder&"\prefs.js"
         FixUserFolders CfgFolder&"\mimeTypes.rdf"
-        FixUserFolders CfgFolder&"\extensions.ini"
+        FixUserFolders CfgFolder&"\extensions.json"
         FixUserFolders CfgFolder&"\pluginreg.dat"
 
         SetEnv "MOZ_CRASHREPORTER_DISABLE", 1
