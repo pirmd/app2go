@@ -1,5 +1,6 @@
 /**
-   Copyright (c) 2014, Pierre Duranton <pmd-prj@laposte.net>
+   Copyright (c) 2014, Πrmd <pirmd@users.noreply.github.com>
+
    All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
